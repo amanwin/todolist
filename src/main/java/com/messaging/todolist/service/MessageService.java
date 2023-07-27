@@ -17,7 +17,7 @@ public class MessageService {
     private static Logger logger = LoggerFactory.getLogger(MessageController.class);
 
     public static final String ACCOUNT_SID = "AC333a9a5464f68757f05aecbe2667049c";
-    public static final String AUTH_TOKEN = "2f03cdda5846cf0817115be6d04535cb";
+    public static final String AUTH_TOKEN = "2b66769dc3fc220c3b35183c69d43b13";
 
     public void sendReply(String message) {
 
@@ -29,7 +29,7 @@ public class MessageService {
         Twilio.init(ACCOUNT_SID, AUTH_TOKEN);
         Message msg = Message.creator(
                 new com.twilio.type.PhoneNumber("whatsapp:+919868909794"),
-                new com.twilio.type.PhoneNumber("whatsapp:+14155238886"),
+                new com.twilio.type.PhoneNumber("whatsapp:+12187481670"),
                         msgToSend)
                         .create();
 
