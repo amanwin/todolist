@@ -19,6 +19,12 @@ public class MessageService {
     public static final String ACCOUNT_SID = "AC333a9a5464f68757f05aecbe2667049c";
     public static final String AUTH_TOKEN = "2b66769dc3fc220c3b35183c69d43b13";
 
+    @Value("${auth.sid}")
+    private String authSID;
+
+    @Value("${auth.token}")
+    private String authToken;
+
     public void sendReply(String message) {
 
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("uuuu/MM/dd HH:mm:ss");
@@ -26,7 +32,7 @@ public class MessageService {
         String msgToSend = dtf.format(now) +": "+message;
 
         logger.info("Message to be sent : "+msgToSend);
-        Twilio.init(ACCOUNT_SID, AUTH_TOKEN);
+        Twilio.init(authSID, authToken);
         Message msg = Message.creator(
                 new com.twilio.type.PhoneNumber("whatsapp:+919868909794"),
                 new com.twilio.type.PhoneNumber("whatsapp:+12187481670"),
