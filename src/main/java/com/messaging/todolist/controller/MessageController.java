@@ -1,7 +1,7 @@
 package com.messaging.todolist.controller;
 
 
-import com.messaging.todolist.service.MessageService;
+import com.messaging.todolist.service.TelegramService;
 import com.messaging.todolist.util.Utils;
 import lombok.AllArgsConstructor;
 import org.slf4j.Logger;
@@ -20,8 +20,11 @@ public class MessageController {
 
     private static Logger logger = LoggerFactory.getLogger(MessageController.class);
 
+    //@Autowired
+    //private MessageService messageService;
+
     @Autowired
-    private MessageService messageService;
+    private TelegramService messageService;
 
     @PostMapping("/sendmessage")
     public void getMessage(@RequestBody String body) {
@@ -29,7 +32,7 @@ public class MessageController {
         Map<String, Object> requestBody = Utils.convertStringToMap(body);
         String message = String.valueOf(requestBody.get("message"));
         logger.info("message" + message);
-        messageService.sendReply(message);
+        messageService.sendAlert(message);
     }
 
 }
