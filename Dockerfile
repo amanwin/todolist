@@ -1,15 +1,14 @@
 #
 # Build stage
 #
-FROM maven:3.8.6-jdk-8 AS build
+FROM maven:3.8.3-openjdk-17 AS build
 COPY . .
-RUN mvn clean package -DskipTests
+RUN mvn clean package
 
 #
 # Package stage
 #
-FROM openjdk:8-jdk-alpine
-COPY --from=build /target/todolist-0.0.1-SNAPSHOT.jar todolist.jar
-# ENV PORT=8080
+FROM openjdk:17-oracle
 EXPOSE 8080
-ENTRYPOINT ["java","-jar","todolist.jar"]
+COPY --from=build target/todolist.jar todolist.jar
+ENTRYPOINT [ "java","-jar","todolist.jar"]
